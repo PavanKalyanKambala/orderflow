@@ -19,14 +19,10 @@ public class OrderController {
     }
 
     @PostMapping
-    public ResponseEntity<CreateOrderResponse> createOrder(
-            @RequestBody @Valid CreateOrderRequest request) {
+    public ResponseEntity<CreateOrderResponse> createOrder(@RequestBody @Valid CreateOrderRequest request) {
 
-        CreateOrderResponse response =
-                orderService.createOrder(request);
+        CreateOrderResponse response = orderService.createOrder(request);
 
-        return ResponseEntity
-                .status(HttpStatus.CREATED)
-                .body(response);
+        return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 }

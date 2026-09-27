@@ -16,35 +16,14 @@ import java.util.List;
 public class GlobalExceptionHandler {
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity<ApiErrorResponse> handleValidationException(
-            MethodArgumentNotValidException exception,
-            HttpServletRequest request) {
+    public ResponseEntity<ApiErrorResponse> handleValidationException(MethodArgumentNotValidException exception, HttpServletRequest request) {
 
-        List<FieldError> errors = exception
-                .getBindingResult()
-                .getFieldErrors()
-                .stream()
-                .map(error -> new FieldError(
-                        error.getField(),
-                        error.getDefaultMessage()
-                ))
-                .toList();
+        List<FieldError> errors = exception.getBindingResult().getFieldErrors().stream().map(error -> new FieldError(error.getField(), error.getDefaultMessage())).toList();
 
-        ErrorCode errorCode =
-                ErrorCode.ORDER_VALIDATION_FAILED;
+        ErrorCode errorCode = ErrorCode.ORDER_VALIDATION_FAILED;
 
-        ApiErrorResponse response =
-                new ApiErrorResponse(
-                        Instant.now(),
-                        HttpStatus.BAD_REQUEST.value(),
-                        errorCode.getCode(),
-                        errorCode.getMessage(),
-                        errors,
-                        request.getRequestURI()
-                );
+        ApiErrorResponse response = new ApiErrorResponse(Instant.now(), HttpStatus.BAD_REQUEST.value(), errorCode.getCode(), errorCode.getMessage(), errors, request.getRequestURI());
 
-        return ResponseEntity
-                .status(HttpStatus.BAD_REQUEST)
-                .body(response);
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
     }
 }

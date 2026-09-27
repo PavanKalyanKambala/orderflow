@@ -13,9 +13,6 @@ public class OrderService {
 
         String orderId = UUID.randomUUID().toString();
 
-        return new CreateOrderResponse(
-                orderId,
-                "CREATED"
-        );
+        return new CreateOrderResponse(orderId, "CREATED");
     }
 }
