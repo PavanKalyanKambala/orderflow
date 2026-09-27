@@ -1,4 +1,4 @@
-package com.pavan.order_service;
+package com.pavan.orderflow;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

@@ -1,4 +1,4 @@
-package com.pavan.order_service;
+package com.pavan.orderflow;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
